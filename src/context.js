@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 
-const API_URL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+// Fetch API key from the environment variable
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
 const AppContext = React.createContext();
 
@@ -45,6 +47,8 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // Debugging the API key and URL in the console
+    console.log("Using API key:", API_KEY); // Log the API key to ensure it's being fetched
     console.log("Query changed:", query); // Log query change
     if (query.trim() !== "") {
       const timeout = setTimeout(() => {
